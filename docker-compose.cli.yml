@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  flyway:
+    container_name: flyway
+    image: flyway/flyway:6.4.1-alpine
+    networks:
+      - net_med_voll
+    environment:
+      FLYWAY_EDITION: community
+    #command: -url=jdbc:mysql://db-med-voll:3306/med_voll -schemas=med_voll -user=root -password=root -connectRetries=60 migrate
+    #command: migrate
+    volumes:
+      - ./src/main/resources/db/migration:/flyway/sql/
+      - ./flyway.conf:/flyway/conf/flyway.conf
+
+networks:
+  net_med_voll:
+    external: true
