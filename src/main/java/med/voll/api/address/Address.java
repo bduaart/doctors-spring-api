@@ -25,4 +25,25 @@ public class Address {
         this.city = address.city();
         this.complement = address.complement();
     }
+
+    public void updateAddress(AddressDto address) {
+        if (address.cep() != null) {
+            this.cep = address.cep();
+        }
+        if (address.city() != null) {
+            this.city = address.city();
+        }
+        if (address.state() != null) {
+            this.state = address.state();
+        }
+        if (address.street() != null) {
+            this.street = address.street();
+        }
+        if (address.district() != null) {
+            this.district = address.district();
+        }
+        if (address.complement() != null) {
+            this.complement = address.complement();
+        }
+    }
 }

@@ -28,7 +28,10 @@ public class Doctor {
     @Embedded
     private Address address;
 
+    private Boolean enable;
+
     public Doctor(DoctorDto data) {
+        this.enable = true;
         this.name = data.name();
         this.email = data.email();
         this.phone = data.phone();
@@ -38,4 +41,20 @@ public class Doctor {
     }
 
 
+    public void updateDoctor(DoctorUpdate data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+        if (data.phone() != null) {
+            this.phone = data.phone();
+        }
+        if (data.address() != null) {
+            this.address.updateAddress(data.address());
+        }
+
+    }
+
+    public void delete() {
+        this.enable = false;
+    }
 }
