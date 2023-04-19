@@ -10,21 +10,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
-    private String address;
+    private String street;
     private String district;
     private String cep;
     private String city;
-    private String uf;
+    private String state;
     private String complement;
-    private String number;
 
     public Address(AddressDto address) {
-        this.address = address.address();
+        this.street = address.street();
         this.district = address.district();
         this.cep = address.cep();
-        this.uf = address.uf();
+        this.state = address.state();
         this.city = address.city();
-        this.number = address.number();
         this.complement = address.complement();
     }
 }
