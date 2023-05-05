@@ -1,0 +1,2 @@
+insert into usuarios values ('a42c92c2-4139-4744-8510-7c213cd8b54a', 'bdo@gmail.com', '$2a$12$mGIb/MFDG5edsls0wL7qMeofGdWVz6yU2lIVV.mYRUVj8A3uZnLHy');
+insert into usuarios values ('921de96b-28c0-4131-9600-d8a4a6aa3ddd', 'lpo@gmail.com', '$2a$12$mGIb/MFDG5edsls0wL7qMeofGdWVz6yU2lIVV.mYRUVj8A3uZnLHy');
