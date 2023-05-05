@@ -1,4 +1,4 @@
-package med.voll.api.doctor;
+package med.voll.api.domain;
 
 public record ListDoctorResponse(Long id, String name, String email, String crm, ExpertiseEnum expertise, String phone, Boolean enable) {
 

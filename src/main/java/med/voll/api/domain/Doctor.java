@@ -1,14 +1,11 @@
-package med.voll.api.doctor;
+package med.voll.api.domain;
 
 
-import med.voll.api.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Table(name = "medicos")
 @Entity(name = "Doctor")
