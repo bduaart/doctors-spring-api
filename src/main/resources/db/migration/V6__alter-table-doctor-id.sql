@@ -1,0 +1,1 @@
+alter table medicos change id id varchar(36) not null;

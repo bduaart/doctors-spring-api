@@ -1,11 +1,13 @@
-package med.voll.api.domain;
+package med.voll.api.domain.doctor;
 
-import med.voll.api.domain.Doctor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+import java.util.UUID;
+
+
+public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
 
     Page<Doctor> findAllByEnableTrue(Pageable page);
 }

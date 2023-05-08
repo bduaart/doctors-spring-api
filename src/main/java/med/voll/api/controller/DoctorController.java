@@ -1,7 +1,11 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.*;
+import med.voll.api.domain.doctor.Doctor;
+import med.voll.api.domain.doctor.DoctorCreateRequest;
+import med.voll.api.domain.doctor.DoctorRepository;
+import med.voll.api.domain.doctor.DoctorUpdateRequest;
+import med.voll.api.domain.doctor.ListDoctorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("medico")
 
@@ -27,7 +33,7 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity create(@RequestBody @Valid DoctorDto data, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity create(@RequestBody @Valid DoctorCreateRequest data, UriComponentsBuilder uriBuilder) {
         var doctor = new Doctor(data);
         doctorRepository.save(doctor);
 
@@ -48,7 +54,7 @@ public class DoctorController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity update(@RequestBody @Valid DoctorUpdate data){
+    public ResponseEntity update(@RequestBody @Valid DoctorUpdateRequest data){
         var doctor = doctorRepository.getReferenceById(data.id());
         doctor.updateDoctor(data);
         return (ResponseEntity) ResponseEntity.ok();
@@ -56,13 +62,13 @@ public class DoctorController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity delete(@PathVariable Long id) {
+    public ResponseEntity delete(@PathVariable UUID id) {
         var doctor = doctorRepository.getReferenceById(id);
         doctor.delete();
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ListDoctorResponse> details(@PathVariable Long id) {
+    public ResponseEntity<ListDoctorResponse> details(@PathVariable UUID id) {
         var doctor = doctorRepository.getReferenceById(id);
         return ResponseEntity.ok(new ListDoctorResponse(doctor));
     }

@@ -1,4 +1,4 @@
-package med.voll.api.domain;
+package med.voll.api.domain.doctor;
 
 
 import jakarta.persistence.*;
@@ -6,6 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.domain.Address;
+import med.voll.api.domain.ExpertiseEnum;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.UUID;
 
 @Table(name = "medicos")
 @Entity(name = "Doctor")
@@ -14,8 +19,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Doctor {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    private String id;
     private String name;
     private String email;
     private String phone;
@@ -27,7 +34,7 @@ public class Doctor {
 
     private Boolean enable;
 
-    public Doctor(DoctorDto data) {
+    public Doctor(DoctorCreateRequest data) {
         this.enable = true;
         this.name = data.name();
         this.email = data.email();
@@ -38,7 +45,7 @@ public class Doctor {
     }
 
 
-    public void updateDoctor(DoctorUpdate data) {
+    public void updateDoctor(DoctorUpdateRequest data) {
         if (data.name() != null) {
             this.name = data.name();
         }
